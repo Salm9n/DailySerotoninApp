@@ -63,7 +63,10 @@ public class DisplayAlarmActivity extends AppCompatActivity {
                             cal.set(Calendar.SECOND, 0);
 
                             String text = "Alarm set for: ";
-                            text += DateFormat.getTimeInstance(DateFormat.SHORT).format(cal);
+                            Date date = cal.getTime();
+                            DateFormat format = new SimpleDateFormat("hh:mm:ss");
+                            text += format.format(date);
+                            //text += DateFormat.getTimeInstance(DateFormat.SHORT).format(cal);
                             alarmText.setText(text);
 
                             Intent intent1 = new Intent(getApplicationContext(), AlarmReceiver.class);
@@ -89,6 +92,7 @@ public class DisplayAlarmActivity extends AppCompatActivity {
                 AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
 
                 am.cancel(pendingIntent);
+                alarmText.setText("No alarm set");
                 Toast toast = Toast.makeText(DisplayAlarmActivity.this, "Alarm canceled" , Toast.LENGTH_SHORT);
                 toast.show();
             }
