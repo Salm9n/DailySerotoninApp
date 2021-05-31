@@ -112,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,noQuote.toString());
 
         Intent intent = new Intent(this, DisplayLinkActivity.class);
-        String link = "https://wsvn.com/entertainment/rappers-young-thug-gunna-pay-bail-for-low-level-offenders-in-atlanta/";
-        Log.d(TAG,link.toString());
         intent.putExtra(EXTRA_MESSAGE,noQuote);
         startActivity(intent);
 
