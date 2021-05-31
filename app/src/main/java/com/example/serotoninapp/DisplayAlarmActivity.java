@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -30,7 +31,12 @@ public class DisplayAlarmActivity extends AppCompatActivity {
 
     private static final String TAG = "DisplayAlarmActivity";
 
+    public static final String SHARED_PREFS = "sharedPrefs";
+
+    public static final String TEXT = "text";
+
     private TextView alarmText;
+    private String text;
 
 
     @Override
@@ -64,10 +70,11 @@ public class DisplayAlarmActivity extends AppCompatActivity {
 
                             String text = "Alarm set for: ";
                             Date date = cal.getTime();
-                            DateFormat format = new SimpleDateFormat("hh:mm:ss");
+                            DateFormat format = new SimpleDateFormat("hh:mm");
                             text += format.format(date);
                             //text += DateFormat.getTimeInstance(DateFormat.SHORT).format(cal);
                             alarmText.setText(text);
+                            saveData();
 
                             Intent intent1 = new Intent(getApplicationContext(), AlarmReceiver.class);
                             PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -93,11 +100,14 @@ public class DisplayAlarmActivity extends AppCompatActivity {
 
                 am.cancel(pendingIntent);
                 alarmText.setText("No alarm set");
+                saveData();
                 Toast toast = Toast.makeText(DisplayAlarmActivity.this, "Alarm canceled" , Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
 
+        loadData();
+        updateViews();
         }
 
 
@@ -123,5 +133,27 @@ public class DisplayAlarmActivity extends AppCompatActivity {
         alarmText.setText(strDate);
 
 
+    }
+
+    public void saveData() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(TEXT, alarmText.getText().toString());
+
+        editor.apply();
+    }
+
+    public void loadData () {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        text = sharedPreferences.getString(TEXT,"");
+
+    }
+
+    public void updateViews() {
+
+        alarmText.setText(text);
     }
 }
