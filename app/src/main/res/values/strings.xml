@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SerotoninApp</string>
+    <string name="tap_the_button_for_a_hit_of_serotonin">Tap the button for a hit of Serotonin</string>
+    <string name="hit_me">Hit me</string>
+    <string name="home">Home</string>
+    <string name="alarm">Alarm</string>
+    <string name="you_may_choose_to_have_it_on_or_off_if_you_dont_like_app_notifications">You may choose to have it on or off if you dont like app notifications</string>
+    <string name="feel_free_to_set_an_alarm_to_remind_you_daily_to_look_at_a_positive_news_article">Feel free to set an alarm to remind you daily to look at a positive news article</string>
+    <string name="set_alarm_on_off">Set Alarm</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="set_an_alarm_to_remind_you_to_look_at_something_positive">Set an Alarm to remind you to look at something positive</string>
+    <string name="channel_name">name1</string>
+    <string name="channel_description">description1</string>
+    <string name="cancel_alarm">Cancel Alarm</string>
+    <string name="no_alarm_set">No Alarm Set</string>
+</resources>
